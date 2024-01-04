@@ -7,7 +7,7 @@ export const deleteUser =async(req,res)=>{
 
  jwt.verify(token,process.env.JWT_KEY,(err,payload)=>{
     if(payload.id !== user._id){
-
+      res.status(403).send("you are not authenticated");
     }
  });
 
