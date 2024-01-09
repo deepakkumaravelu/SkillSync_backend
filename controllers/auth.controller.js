@@ -35,8 +35,13 @@ export const  login= async (req,res,next)=>{
 
         }).status(200).send(info)
     }catch(err){
-        res.status(500).send("something went wrong");
+        next(err);
     }
 }
+//blacklist to list the tokens no longer access to the system
 export const  logout= async (req,res)=>{
+    res.clearCookie("accessToken",{
+        sameSite:"none",
+        secure:true,
+    }).status(200).send("User has been logged out");
 }
